@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <cmath>
 
@@ -6,6 +7,7 @@ class Base_class {
 	int base, height;
 	int width, length;
 	double radius;
+	int depth;
 	
 	void findArea() {
 		std::cout << "findArea() in Base class" << std::endl;
@@ -52,6 +54,44 @@ class Circle : public Base_class {
 	}
 };
 
+class DTriangle : public Triangle {
+	public:	
+	DTriangle(){
+		base = 10; height = 2; depth = 3;
+	}
+	void findArea() {
+		std::cout << "Area of 3D Triangle is " << (0.5 * base * height * depth) << std::endl;
+	}
+	void perimeter() {
+		double c= std::sqrt((base*base) + (height*height) + (depth*depth));
+		std::cout << "Perimeter of 3D triangle is " << (base + height + c + depth) << std::endl;
+	}
+};
+class DRectangle : public Rectangle {
+	public:	
+	DRectangle(){
+		base = 5; height = 10; depth = 5;
+	}
+	void findArea() {
+		std::cout << "Area of 3D Rectangle is " << (width * length* depth) << std::endl;
+	}
+	void perimeter(){
+		std::cout << "Perimeter of 3D rectangle is " << (2*(width+length+depth)) << std::endl;
+	}
+};
+class DCircle : public Circle {
+	public:
+	DCircle(double rr,int dd) : Circle(rr){
+		depth = dd;
+	}
+	void findArea (){
+		std::cout << "Area of 3D Circle is " << (M_PI * radius * radius * depth) << std::endl;
+	}
+	void perimeter() {
+		std::cout << "Perimeter of 3D cicle is " << (2.0 * M_PI * radius * depth) << std::endl;
+	}
+};
+
 int main() {
 	Triangle tr;
 	tr.findArea();
@@ -64,4 +104,18 @@ int main() {
 	Circle cr(10);
 	cr.findArea();
 	cr.perimeter();
+	
+	DTriangle tr3;
+	tr3.findArea();
+	tr3.perimeter();
+
+    DRectangle rec3;
+    rec3.findArea();
+    rec3.perimeter();
+
+    DCircle cr3(10,5);
+	cr3.findArea();
+	cr3.perimeter();
+
+	return 0;
 }
